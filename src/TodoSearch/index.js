@@ -1,11 +1,7 @@
 import React from "react";
 import './TodoSearch.css';
-import {TodoContext} from "../TodoContext";
-function TodoSearch() {
-
-    //const [searchValue,setSearchValue] = React.useState('');
-    //console.log("query: ",searchValue)
-    const {searchValue,setSearchValue} = React.useContext(TodoContext);
+import {TodoContext} from "../App/useTodos";
+function TodoSearch({searchValue,setSearchValue,loading}) {
 
     return(
       <input placeholder="Cortar cebolla" 
@@ -17,6 +13,7 @@ function TodoSearch() {
                 setSearchValue(event.target.value);
             }
          }
+      disabled={loading}
       />
     );
 }
