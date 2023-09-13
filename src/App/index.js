@@ -11,12 +11,14 @@ import {CreateTodoButton} from "../CreateTodoButton";
 import {Modal} from "../Modal";
 import {TodoForm} from "../TodoForm";
 import {useTodos} from "./useTodos";
+import { ChangeAlertWithStorageListener} from "../ChangeAlert";
 
 function App() {
 
     const {loading,error,searchedTodos,completeTodo,
         deleteTodo,openModal,setOpenModal,completedTodos,
-        totalTodos,searchValue,setSearchValue, addTodo
+        totalTodos,searchValue,setSearchValue, addTodo,
+        sincronizeTodos
     } = useTodos();
 
     return (
@@ -70,6 +72,7 @@ function App() {
                 </Modal>
             )}
 
+          <ChangeAlertWithStorageListener sincronize={sincronizeTodos}/>
         </React.Fragment>
     );
 }
