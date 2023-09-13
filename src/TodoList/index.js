@@ -15,7 +15,7 @@ function TodoList(
 
       {(!!totalTodos && !searchedTodos.length) && onEmptySearchResults(searchText)}
 
-      { searchedTodos.map(render) }
+      { (!loading && !error) && searchedTodos.map(render) }
 
       <ul className='TodoList'>
         {children}
