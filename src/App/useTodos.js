@@ -48,14 +48,21 @@ function useTodos(props) {
         saveTodos(newTodos);
     };
 
-    return (
-        {
-            loading,error,completedTodos,totalTodos,
-            searchValue,setSearchValue, searchedTodos,completeTodo,
-            deleteTodo,openModal,setOpenModal,addTodo,
-            sincronizeTodos,
-        }
-    );
+    const state = {
+        loading,error,
+        completedTodos,totalTodos,
+        searchValue,searchedTodos,
+        openModal,
+    };
+
+    const stateUpdaters = {
+        setSearchValue,addTodo,
+        completeTodo,deleteTodo,
+        setOpenModal,sincronizeTodos
+    };
+
+
+    return { state, stateUpdaters };
 }
 
 export { useTodos };
