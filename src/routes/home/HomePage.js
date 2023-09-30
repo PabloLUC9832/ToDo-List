@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {TodoHeader} from "../../ui/TodoHeader";
 import {TodoCounter} from "../../ui/TodoCounter";
 import {TodoSearch} from "../../ui/TodoSearch";
@@ -8,8 +8,6 @@ import {TodosLoading} from "../../ui/TodosLoading";
 import {EmptyTodos} from "../../ui/EmptyTodos";
 import {TodoItem} from "../../ui/TodoItem";
 import {CreateTodoButton} from "../../ui/CreateTodoButton";
-import {Modal} from "../../ui/Modal";
-import {TodoForm} from "../../ui/TodoForm";
 import {ChangeAlert} from "../../ui/ChangeAlert";
 import {useTodos} from "../useTodos";
 import {useNavigate} from "react-router-dom";
@@ -23,14 +21,11 @@ function HomePage() {
         loading,error,
         completedTodos,totalTodos,
         searchValue,searchedTodos,
-        //openModal,
     } = state;
 
     const {
         setSearchValue,
-        //addTodo,
         completeTodo,deleteTodo
-        //setOpenModal
         ,sincronizeTodos
     } = stateUpdaters;
 
@@ -42,13 +37,11 @@ function HomePage() {
                 <TodoCounter
                     totalTodos={totalTodos}
                     completedTodos={completedTodos}
-                    //loading={loading}
                 />
 
                 <TodoSearch
                     searchValue={searchValue}
                     setSearchValue={setSearchValue}
-                    //loading={loading}
                 />
             </TodoHeader>
 
@@ -75,20 +68,8 @@ function HomePage() {
             />
 
             <CreateTodoButton
-                //setOpenModal={setOpenModal}
                 onClick={ () => navigate('/new') }
             />
-{/*
-
-            {openModal && (
-                <Modal>
-                    <TodoForm
-                        setOpenModal={setOpenModal}
-                        addTodo={addTodo}
-                    />
-                </Modal>
-            )}
-*/}
 
             <ChangeAlert sincronize={sincronizeTodos}/>
         </React.Fragment>

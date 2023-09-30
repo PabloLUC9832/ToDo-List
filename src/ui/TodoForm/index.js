@@ -8,8 +8,8 @@ function TodoForm(props) {
     const [newTodoValue,setNewTodoValue] = React.useState('');
     const onSubmit = (event) => {
         event.preventDefault();
-        navigate('/');
         props.submitEvent(newTodoValue);
+        navigate('/');
     }
 
     const onCancel = (event) => {
@@ -23,17 +23,26 @@ function TodoForm(props) {
     return (
         <form onSubmit={onSubmit}>
             <label>{props.label}</label>
-            <textarea placeholder="Comprar manzanas" value={newTodoValue}
-            onChange={onChange} required/>
+            <textarea
+                value={newTodoValue}
+                onChange={onChange}
+                placeholder="Cortar la cebolla oara el almuerzo"
+            />
             <div className="TodoForm-buttonContainer">
-                <button type="button" className="TodoForm-button TodoForm-button--cancel"
-                onClick={onCancel}>Cancelar</button>
-
-                <button type="submit" className="TodoForm-button TodoForm-button--add"
-                >{props.submitText}</button>
-
+                <button
+                    type="button"
+                    className="TodoForm-button TodoForm-button--cancel"
+                    onClick={onCancel}
+                >
+                    Cancelar
+                </button>
+                <button
+                    type="submit"
+                    className="TodoForm-button TodoForm-button--add"
+                >
+                    {props.submitText}
+                </button>
             </div>
-
         </form>
     );
 }
