@@ -12,22 +12,26 @@ import {Modal} from "../../ui/Modal";
 import {TodoForm} from "../../ui/TodoForm";
 import {ChangeAlert} from "../../ui/ChangeAlert";
 import {useTodos} from "../useTodos";
+import {useNavigate} from "react-router-dom";
 
 function HomePage() {
 
     const { state, stateUpdaters} = useTodos();
+    const navigate = useNavigate();
 
     const {
         loading,error,
         completedTodos,totalTodos,
         searchValue,searchedTodos,
-        openModal,
+        //openModal,
     } = state;
 
     const {
-        setSearchValue,addTodo,
-        completeTodo,deleteTodo,
-        setOpenModal,sincronizeTodos
+        setSearchValue,
+        //addTodo,
+        completeTodo,deleteTodo
+        //setOpenModal
+        ,sincronizeTodos
     } = stateUpdaters;
 
     return (
@@ -63,7 +67,7 @@ function HomePage() {
                         key={todo.id}
                         text={todo.text}
                         completed={todo.completed}
-                        onEdit={ () => console.log("Edit") }
+                        onEdit={ () => navigate(`/edit/${todo.id}`) }
                         onComplete={ () => completeTodo(todo.id)}
                         onDelete={ () => deleteTodo(todo.id)}
                     />
@@ -71,7 +75,10 @@ function HomePage() {
             />
 
             <CreateTodoButton
-                setOpenModal={setOpenModal}/>
+                //setOpenModal={setOpenModal}
+                onClick={ () => navigate('/new') }
+            />
+{/*
 
             {openModal && (
                 <Modal>
@@ -81,6 +88,7 @@ function HomePage() {
                     />
                 </Modal>
             )}
+*/}
 
             <ChangeAlert sincronize={sincronizeTodos}/>
         </React.Fragment>
